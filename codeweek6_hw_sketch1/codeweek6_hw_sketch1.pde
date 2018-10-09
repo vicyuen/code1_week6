@@ -12,8 +12,8 @@
 // experiment with changing the size of the 2d array and displaying different values
 //  in the draw loop, then move on to the next sketch.
 
-int gridW = 5;
-int gridH = 5;
+int gridW = 10;
+int gridH = 10;
 
 String[][] my2dArray = new String[gridW][gridH];
 

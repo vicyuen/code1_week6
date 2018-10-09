@@ -15,15 +15,18 @@
 
 int gridW = 20;
 int gridH = 20;
-
+float[][] rotatingArr = new float[gridW][gridH];
 float[][] angles = new float[gridW][gridH];
+float[][] lineColor = new float [gridW][gridH];
 
 void setup() {
   size(800, 800);
   stroke(255);
   for (int i = 0; i < gridW; i++) {
     for (int j = 0; j < gridH; j++) {
-      angles[i][j] = random(360);
+      angles[i][j] = map(i*j, 0, gridW*gridH, 0, 360);
+      rotatingArr[i][j] = map(i*j, 0, gridW*gridH, 2, 200);
+      lineColor[i][j] = map(i*j, 0, gridW*gridH, 0, 100);
     }
   }
 }
@@ -35,6 +38,9 @@ void draw() {
     for (int j = 0; j < gridH; j++) {
       pushMatrix();
       translate(i * width/gridW, j * height/gridH);
+      colorMode(HSB, 100);
+      stroke(lineColor[i][j], 80, 100);
+      angles[i][j] += rotatingArr[i][j];
       rotate(radians(angles[i][j]));
       line(-width/gridW*0.5, 0, width/gridW*0.5, 0);
       popMatrix();

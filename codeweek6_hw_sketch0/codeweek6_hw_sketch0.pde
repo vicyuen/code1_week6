@@ -17,6 +17,7 @@ float[] x = new float[num];
 float[] y = new float[num];
 float[] dx = new float[num];
 float[] dy = new float[num];
+float[] radius = new float[num];
 
 void setup() {
   size(800, 800);
@@ -25,6 +26,7 @@ void setup() {
     y[i] = height/2;
     dx[i] = random(-10, 10);
     dy[i] = random(-10, 10);
+    radius[i] = random(10, 60);
   }
 }
 
@@ -36,14 +38,14 @@ void draw() {
     float s = 50;
 
     fill(20);
-    ellipse(x[i], y[i], s, s);
+    ellipse(x[i], y[i], radius[i], radius[i]);
     x[i] += dx[i];
     y[i] += dy[i];
 
-    if (x[i] > width-s/2 || x[i] < s/2) {
+    if (x[i] > width-radius[i]/2 || x[i] < radius[i]/2) {
       dx[i] = -dx[i];
     }
-    if (y[i] > height-s/2 || y[i] < s/2) {
+    if (y[i] > height-radius[i]/2 || y[i] < radius[i]/2) {
       dy[i] = -dy[i];
     }
   }

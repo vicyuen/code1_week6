@@ -20,35 +20,29 @@
 //  you could control the color based on the mouse distance to each ball by using 
 //  the dist() function and map().
 
-Ball myBall1;
-Ball myBall2;
-Ball myBall3;
+int num = 100;
+Ball[] ballArray = new Ball[num];
 
 void setup() {
   size(800, 800);
 
-  myBall1 = new Ball();
-  myBall2 = new Ball();
-  myBall3 = new Ball();
+  for(int i = 0; i<num; i++){
+   ballArray[i] = new Ball(); }
 }
 
 void draw() {
   background(20);
-  myBall1.update();
-  myBall1.display();
-  
-  myBall2.update();
-  myBall2.display();
-  
-  myBall3.update();
-  myBall3.display();
+  for(int i = 0; i<num; i++){
+    ballArray[i].display();
+    ballArray[i].update();
+  }
 }
 
 class Ball {
   float x, y;
   float dx, dy;
   float s;
-
+  float ballColor;
   // this function is called a constructor. 
   // it is called when a new Ball object is created.
   Ball() { 
@@ -56,10 +50,11 @@ class Ball {
     y = height/2;
     dx = random(-5, 5);
     dy = random(-5, 5);
-    s = 50;
+    s = random(10, 40);
   }
 
   void display() {
+    fill (ballColor, 80, 100);
     ellipse(x, y, s, s);
   }
 
@@ -73,5 +68,7 @@ class Ball {
     if (y > height - s/2 || y < s/2) {
       dy *= -1;
     }
+    colorMode(HSB, 100);
+    ballColor = map(dist(x, y, mouseX, mouseY), 0, width, 0, 100);
   }
 }

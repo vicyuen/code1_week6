@@ -18,6 +18,7 @@
 
 int gridW = 10;
 int gridH = 10;
+float [][] size = new float[gridW][gridH];
 
 boolean[][] isRed = new boolean[gridW][gridH];
 
@@ -31,6 +32,7 @@ void setup() {
       } else {
         isRed[i][j] = false;
       }
+      size[i][j] = map(i*j, 0, gridW*gridH, 5, 100);
     }
   }
 }
@@ -45,8 +47,8 @@ void draw() {
       } else {
         fill(200, 200, 200);
       }
-      float w = width/gridW;
-      float h = height/gridH;
+      float w = size[i][j];
+      float h = size[i][j];
       float xPos = i * width/gridW + w/2;
       float yPos = j * height/gridH + h/2;
       
